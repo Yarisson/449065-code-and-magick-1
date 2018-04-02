@@ -37,7 +37,7 @@ var renderText = function (ctx, color, style, x, y) {
   ctx.fillStyle = color;
   ctx.font = style;
   ctx.fillText('Ура вы победили!', x, y);
-  ctx.fillText('Список результатов:', x, y + GAP_TEXT);     
+  ctx.fillText('Список результатов:', x, y + GAP_TEXT);
 };
 
 var renderResult = function (ctx, arrayResults, maxResult) {
