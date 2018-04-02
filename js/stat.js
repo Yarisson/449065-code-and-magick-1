@@ -16,16 +16,16 @@ var Y_GISTO_NAME_POINT = 260;
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
-  ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);    
+  ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
 var getMaxElement = function (arr) {
-  var maxElement = arr[0];    
+  var maxElement = arr[0];
   for (var i = 0; i < arr.length; i++) {
     if (arr[i] > maxElement) {
       maxElement = arr[i];
     }
-  }    
+  }
   return maxElement;
 };
 
@@ -35,8 +35,8 @@ var randomColor = function () {
 
 window.renderStatistics = function (ctx, names, times) {
 
-  renderCloud (ctx, X_CLOUD_POINT + GAP, Y_CLOUD_POINT + GAP, 'rgba(0, 0, 0, 0.7)');
-  renderCloud (ctx, X_CLOUD_POINT, Y_CLOUD_POINT, '#fff');
+  renderCloud(ctx, X_CLOUD_POINT + GAP, Y_CLOUD_POINT + GAP, 'rgba(0, 0, 0, 0.7)');
+  renderCloud(ctx, X_CLOUD_POINT, Y_CLOUD_POINT, '#fff');
 
   ctx.fillStyle = '#000';
   ctx.font = '16px PT Mono';
