@@ -19,23 +19,21 @@ var renderCloud = function (ctx, x, y, color) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);    
 };
 
-var getMaxElement = function(arr) {
-  var maxElement = arr[0];
-    
-    for (var i = 0; i < arr.length; i++) {
-      if (arr[i] > maxElement) {
-        maxElement = arr[i];
-      }
+var getMaxElement = function (arr) {
+  var maxElement = arr[0];    
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] > maxElement) {
+      maxElement = arr[i];
     }
-    
+  }    
   return maxElement;
 };
 
-var randomColor = function() {
+var randomColor = function () {
   return 'rgba(0, 0, 255, ' + Math.random() + ')';
-}
+};
 
-window.renderStatistics = function(ctx, names, times) {
+window.renderStatistics = function (ctx, names, times) {
 
   renderCloud (ctx, X_CLOUD_POINT + GAP, Y_CLOUD_POINT + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud (ctx, X_CLOUD_POINT, Y_CLOUD_POINT, '#fff');
@@ -47,9 +45,9 @@ window.renderStatistics = function(ctx, names, times) {
 
   var maxTime = getMaxElement(times);
 
-  for (var i=0; i < names.length; i++  ) {
+  for (var i = 0; i < names.length; i++) {
     ctx.fillStyle = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : randomColor();
     ctx.fillText(names[i], X_GISTO_POINT + (GISTO_WIDTH + GISTO_GAP_X) * [i], Y_GISTO_NAME_POINT);
-    ctx.fillRect(X_GISTO_POINT + (GISTO_WIDTH + GISTO_GAP_X) * [i], Y_GISTO_POINT, GISTO_WIDTH , GISTO_HEIGHT * times[i] / maxTime);
+    ctx.fillRect(X_GISTO_POINT + (GISTO_WIDTH + GISTO_GAP_X) * [i], Y_GISTO_POINT, GISTO_WIDTH, GISTO_HEIGHT * times[i] / maxTime);
   }
 };
