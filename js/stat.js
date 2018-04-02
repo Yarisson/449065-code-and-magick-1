@@ -43,7 +43,7 @@ var renderText = function (ctx, color, style, x, y) {
 var renderResult = function (ctx, arrayResults, maxResult) {
   for (var i = 0; i < arrayResults.length; i++) {
     ctx.font = '16px PT Mono';
-    ctx.fillStyle = '#green';
+    ctx.fillStyle = '#000';
     ctx.fillText(Math.round(arrayResults[i]), X_GISTO_POINT + (GISTO_WIDTH + GISTO_GAP_X) * [i], Y_GISTO_POINT + GISTO_HEIGHT * arrayResults[i] / maxResult - 5);
   }
 };
