@@ -32,8 +32,7 @@ var getMaxElement = function(arr) {
 };
 
 var randomColor = function() {
-  var rand = Math.random();   
-  return rand;
+  return 'rgba(0, 0, 255, ' + Math.random() + ')';
 }
 
 window.renderStatistics = function(ctx, names, times) {
@@ -49,13 +48,8 @@ window.renderStatistics = function(ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   for (var i=0; i < names.length; i++  ) {
-    var randomShadow = randomColor();
-    ctx.fillStyle = 'rgba(0, 0, 255, ' + randomShadow + ')';
-      if (names[i] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    }
+    ctx.fillStyle = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : randomColor();
     ctx.fillText(names[i], X_GISTO_POINT + (GISTO_WIDTH + GISTO_GAP_X) * [i], Y_GISTO_NAME_POINT);
     ctx.fillRect(X_GISTO_POINT + (GISTO_WIDTH + GISTO_GAP_X) * [i], Y_GISTO_POINT, GISTO_WIDTH , GISTO_HEIGHT * times[i] / maxTime);
   }
-
 };
