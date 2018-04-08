@@ -1,8 +1,17 @@
 'use strict';
+
+var INDEXSIMILARWIZARD = 4;
+
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
 
-var names = [
+var userDialogHidden = function () {
+  userDialog.classList.remove('hidden');
+};
+
+userDialogHidden();
+
+var NAMES = [
   'Иван',
   'Хуан Себастьян',
   'Мария',
@@ -12,7 +21,7 @@ var names = [
   'Люпита',
   'Вашингтон'];
 
-var familyName = [
+var FAMILYNAMES = [
   'да Марья',
   'Верон',
   'Мирабелла',
@@ -23,7 +32,7 @@ var familyName = [
   'Ирвинг'
 ];
 
-var coatColor = [
+var COATCOLORS = [
   'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
   'rgb(146, 100, 161)',
@@ -32,7 +41,7 @@ var coatColor = [
   'rgb(0, 0, 0)'
 ];
 
-var eyesColor = [
+var EYESCOLORS = [
   'black',
   'red',
   'blue',
@@ -47,9 +56,9 @@ var randomIndex = function (a) {
 var renderWizard = function () {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
-  wizardElement.querySelector('.setup-similar-label').textContent = names[randomIndex(7)] + ' ' + familyName[randomIndex(7)];
-  wizardElement.querySelector('.wizard-coat').style.fill = coatColor[randomIndex(5)];
-  wizardElement.querySelector('.wizard-eyes').style.fill = eyesColor[randomIndex(5)];
+  wizardElement.querySelector('.setup-similar-label').textContent = NAMES[randomIndex(7)] + ' ' + FAMILYNAMES[randomIndex(7)];
+  wizardElement.querySelector('.wizard-coat').style.fill = COATCOLORS[randomIndex(5)];
+  wizardElement.querySelector('.wizard-eyes').style.fill = EYESCOLORS[randomIndex(5)];
 
   return wizardElement;
 };
@@ -60,7 +69,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-for (var i = 0; i < 4; i++) {
+for (var i = 0; i < INDEXSIMILARWIZARD; i++) {
   fragment.appendChild(renderWizard());
 }
 
