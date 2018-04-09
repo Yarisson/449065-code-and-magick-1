@@ -1,15 +1,6 @@
 'use strict';
 
-var INDEXSIMILARWIZARD = 4;
-
-var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
-
-var userDialogHidden = function () {
-  userDialog.classList.remove('hidden');
-};
-
-userDialogHidden();
+var INDEX_SIMILAR_WIZARD = 4;
 
 var NAMES = [
   'Иван',
@@ -53,7 +44,13 @@ var randomIndex = function (a) {
   return Math.round(a * Math.random());
 };
 
+var showUserDialog = function () {
+  var userDialog = document.querySelector('.setup');
+  userDialog.classList.remove('hidden');
+};
+
 var renderWizard = function () {
+  var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
   wizardElement.querySelector('.setup-similar-label').textContent = NAMES[randomIndex(7)] + ' ' + FAMILYNAMES[randomIndex(7)];
@@ -63,16 +60,34 @@ var renderWizard = function () {
   return wizardElement;
 };
 
-var fragment = document.createDocumentFragment();
+var renderSimilarWizards = function () {
+  var fragment = document.createDocumentFragment();
+  var similarListElement = document.querySelector('.setup-similar-list');
+  for (var i = 0; i < INDEX_SIMILAR_WIZARD; i++) {
+    fragment.appendChild(renderWizard());
+  }
+  similarListElement.appendChild(fragment);
+};
+
+/* var fragment = document.createDocumentFragment();
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-for (var i = 0; i < INDEXSIMILARWIZARD; i++) {
+for (var i = 0; i < INDEX_SIMILAR_WIZARD; i++) {
   fragment.appendChild(renderWizard());
 }
 
-similarListElement.appendChild(fragment);
+similarListElement.appendChild(fragment); */
 
-document.querySelector('.setup-similar').classList.remove('hidden');
+var showSetupSimilar = function () {
+  var setupSimilar = document.querySelector('.setup-similar');
+  setupSimilar.classList.remove('hidden');
+};
+
+showUserDialog();
+
+renderSimilarWizards();
+
+showSetupSimilar();
