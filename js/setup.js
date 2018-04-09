@@ -69,18 +69,6 @@ var renderSimilarWizards = function () {
   similarListElement.appendChild(fragment);
 };
 
-/* var fragment = document.createDocumentFragment();
-var similarListElement = document.querySelector('.setup-similar-list');
-var similarWizardTemplate = document.querySelector('#similar-wizard-template')
-    .content
-    .querySelector('.setup-similar-item');
-
-for (var i = 0; i < INDEX_SIMILAR_WIZARD; i++) {
-  fragment.appendChild(renderWizard());
-}
-
-similarListElement.appendChild(fragment); */
-
 var showSetupSimilar = function () {
   var setupSimilar = document.querySelector('.setup-similar');
   setupSimilar.classList.remove('hidden');
