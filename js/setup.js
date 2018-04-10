@@ -12,7 +12,7 @@ var NAMES = [
   'Люпита',
   'Вашингтон'];
 
-var FAMILYNAMES = [
+var FAMILY_NAMES = [
   'да Марья',
   'Верон',
   'Мирабелла',
@@ -23,7 +23,7 @@ var FAMILYNAMES = [
   'Ирвинг'
 ];
 
-var COATCOLORS = [
+var COAT_COLORS = [
   'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
   'rgb(146, 100, 161)',
@@ -32,7 +32,7 @@ var COATCOLORS = [
   'rgb(0, 0, 0)'
 ];
 
-var EYESCOLORS = [
+var EYES_COLORS = [
   'black',
   'red',
   'blue',
@@ -53,9 +53,9 @@ var renderWizard = function () {
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
-  wizardElement.querySelector('.setup-similar-label').textContent = NAMES[randomIndex(7)] + ' ' + FAMILYNAMES[randomIndex(7)];
-  wizardElement.querySelector('.wizard-coat').style.fill = COATCOLORS[randomIndex(5)];
-  wizardElement.querySelector('.wizard-eyes').style.fill = EYESCOLORS[randomIndex(5)];
+  wizardElement.querySelector('.setup-similar-label').textContent = NAMES[randomIndex(NAMES.length - 1)] + ' ' + FAMILY_NAMES[randomIndex(FAMILY_NAMES.length - 1)];
+  wizardElement.querySelector('.wizard-coat').style.fill = COAT_COLORS[randomIndex(COAT_COLORS.length)];
+  wizardElement.querySelector('.wizard-eyes').style.fill = EYES_COLORS[randomIndex(COAT_COLORS.length)];
 
   return wizardElement;
 };
@@ -74,8 +74,10 @@ var showSetupSimilar = function () {
   setupSimilar.classList.remove('hidden');
 };
 
-showUserDialog();
+var initSetup = function () {
+  showUserDialog();
+  renderSimilarWizards();
+  showSetupSimilar();
+};
 
-renderSimilarWizards();
-
-showSetupSimilar();
+initSetup();
