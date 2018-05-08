@@ -44,10 +44,10 @@ var randomIndex = function (a) {
   return Math.round(a * Math.random());
 };
 
-var showUserDialog = function () {
+  /* var showUserDialog = function () {
   var userDialog = document.querySelector('.setup');
   userDialog.classList.remove('hidden');
-};
+}; */
 
 var renderWizard = function () {
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
@@ -75,9 +75,79 @@ var showSetupSimilar = function () {
 };
 
 var initSetup = function () {
-  showUserDialog();
+  // showUserDialog();
   renderSimilarWizards();
   showSetupSimilar();
 };
 
 initSetup();
+
+// 4 задание
+
+var setup = document.querySelector('.setup');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = document.querySelector('.setup-close');
+var setupUserName = document.querySelector('.setup-user-name');
+var userNameInput = setup.querySelector('.setup-user-name');
+
+var onSetupOpenEnter = function (evt) {
+  if (evt.keyCode === 13) {
+    setup.classList.remove('hidden');
+  }
+};
+
+var onSetupUserNameBlur = function () {
+  document.addEventListener('keydown', onSetupCloseEsc);
+};
+
+var onSetupUserNameFocus = function () {
+  document.removeEventListener('keydown', onSetupCloseEsc);
+};
+
+var onSetupOpenClick = function () {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onSetupCloseEsc);
+  document.addEventListener('keydown', onSetupCloseEnter);
+  setupClose.addEventListener('click', onSetupCloseClick);
+  setupUserName.addEventListener('focus', onSetupUserNameFocus);
+  setupUserName.addEventListener('blur', onSetupUserNameBlur);
+};
+
+var onSetupCloseEnter = function (evt) {
+  if (evt.keyCode === 13) {
+    setup.classList.add('hidden');
+    document.removeEventListener('keydown', onSetupCloseEnter);
+    document.removeEventListener('keydown', onSetupCloseEsc);
+    setupClose.removeEventListener('click', onSetupCloseClick);
+  }
+};
+
+var onSetupCloseEsc = function (evt) {
+  if (evt.keyCode === 27) {
+    setup.classList.add('hidden');
+    document.removeEventListener('keydown', onSetupCloseEnter);
+    document.removeEventListener('keydown', onSetupCloseEsc);
+    setupClose.removeEventListener('click', onSetupCloseClick);
+  }
+};
+
+var onSetupCloseClick = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onSetupCloseEnter);
+  setup.removeEventListener('keydown', onSetupCloseEsc);
+  setupClose.removeEventListener('click', onSetupCloseClick);
+};
+
+var onUserNameInputInvalid = function () {
+  if (userNameInput.validity.tooShort) {
+    userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+  } else if (userNameInput.validity.valueMissing) {
+    userNameInput.setCustomValidity('Обязательное поле');
+  } else {
+    userNameInput.setCustomValidity('');
+  }
+};
+
+setupOpen.addEventListener('keydown', onSetupOpenEnter);
+setupOpen.addEventListener('click', onSetupOpenClick);
+userNameInput.addEventListener('invalid', onUserNameInputInvalid);
